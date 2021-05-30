@@ -1,6 +1,7 @@
 package org.abondar.experimental.ml4j.data.command;
 
 import org.abondar.experimental.ml4j.command.CommandSwitcher;
+import org.abondar.experimental.ml4j.data.command.reader.CsvReaderCommand;
 import org.abondar.experimental.ml4j.data.command.split.FileSplitCommand;
 import org.abondar.experimental.ml4j.data.command.split.NumberFileSplitCommand;
 import org.abondar.experimental.ml4j.data.command.split.TransformSplitCommand;
@@ -14,18 +15,23 @@ public class DataCommandSwitcher extends CommandSwitcher {
 
         try {
             switch (DataCommands.valueOf(cmd)){
+                case CSVRC:
+                    var csvrc = new CsvReaderCommand();
+                    executor.executeCommand(csvrc);
+                    break;
+
                 case FSC:
-                    FileSplitCommand fsc = new FileSplitCommand();
+                    var fsc = new FileSplitCommand();
                     executor.executeCommand(fsc);
                     break;
 
                 case NFSC:
-                    NumberFileSplitCommand nfsc = new NumberFileSplitCommand();
+                    var nfsc = new NumberFileSplitCommand();
                     executor.executeCommand(nfsc);
                     break;
 
                 case TSC:
-                    TransformSplitCommand tsc = new TransformSplitCommand();
+                    var tsc = new TransformSplitCommand();
                     executor.executeCommand(tsc);
                     break;
             }
