@@ -4,5 +4,6 @@ public enum DataCommands {
     CSVRC,
     FSC,
     NFSC,
+    IRC,
     TSC
 }

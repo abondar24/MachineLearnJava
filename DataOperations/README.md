@@ -8,6 +8,7 @@ Examples for data operations and transformation
 2. Numbered File Split (nfsc) - Generate file names within range.
 3. Transform Split (tsc) - Normalize file urls and generate output ones.
 4. CSV Reader (csvrc) - Read CSV file.
+5. Image Reader (irc) - Read image.
 
 ## Build And Run
 
