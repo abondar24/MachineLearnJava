@@ -17,7 +17,6 @@
         <dl4j.version>1.0.0-M1</dl4j.version>
         <nd4j.version>1.0.0-M1</nd4j.version>
         <datavec.version>1.0.0-M1</datavec.version>
-        <slf4j.version>1.7.30</slf4j.version>
         <maven.compiler.plugin>3.8.1</maven.compiler.plugin>
         <maven.dependency.plugin>3.1.2</maven.dependency.plugin>
         <maven.jar.plugin>3.2.0</maven.jar.plugin>
@@ -40,11 +39,6 @@
             <groupId>org.datavec</groupId>
             <artifactId>datavec-api</artifactId>
             <version>${datavec.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-simple</artifactId>
-            <version>${slf4j.version}</version>
         </dependency>
 
 
