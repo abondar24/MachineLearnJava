@@ -6,7 +6,12 @@
 
     <groupId>org.abondar.experimental</groupId>
     <artifactId>Ml4J</artifactId>
+    <packaging>pom</packaging>
     <version>0.1-SNAPSHOT</version>
+    <modules>
+        <module>DataOperations</module>
+        <module>Command</module>
+    </modules>
 
     <properties>
         <dl4j.version>1.0.0-M1</dl4j.version>
@@ -15,7 +20,6 @@
         <slf4j.version>1.7.30</slf4j.version>
         <maven.compiler.plugin>3.8.1</maven.compiler.plugin>
         <maven.dependency.plugin>3.1.2</maven.dependency.plugin>
-        <maven.shade.plugin>3.2.4</maven.shade.plugin>
         <maven.jar.plugin>3.2.0</maven.jar.plugin>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
@@ -77,35 +81,6 @@
                     </execution>
                 </executions>
             </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-shade-plugin</artifactId>
-                <version>${maven.shade.plugin}</version>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>shade</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-<!--            <plugin>-->
-<!--                <groupId>org.apache.maven.plugins</groupId>-->
-<!--                <artifactId>maven-jar-plugin</artifactId>-->
-<!--                <version>${maven.jar.plugin}</version>-->
-<!--                <configuration>-->
-<!--                    <archive>-->
-<!--                        <manifest>-->
-<!--                            <addDefaultImplementationEntries>true</addDefaultImplementationEntries>-->
-<!--                            <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>-->
-<!--                            <mainClass>org.abondar.experimental.numberencoding.NumbersEncoding</mainClass>-->
-<!--                        </manifest>-->
-<!--                    </archive>-->
-<!--                    <finalName>encoder</finalName>-->
-<!--                </configuration>-->
-<!--            </plugin>-->
-
 
         </plugins>
     </build>
