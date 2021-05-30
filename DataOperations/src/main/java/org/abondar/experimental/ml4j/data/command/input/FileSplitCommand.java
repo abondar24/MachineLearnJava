@@ -1,4 +1,4 @@
-package org.abondar.experimental.ml4j.data.command.impl;
+package org.abondar.experimental.ml4j.data.command.input;
 
 import org.abondar.experimental.ml4j.command.Command;
 import org.bytedeco.javacpp.tools.Slf4jLogger;
