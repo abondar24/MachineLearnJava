@@ -1,8 +1,9 @@
 package org.abondar.experimental.ml4j.data.command;
 
 import org.abondar.experimental.ml4j.command.CommandSwitcher;
-import org.abondar.experimental.ml4j.data.command.input.FileSplitCommand;
-import org.abondar.experimental.ml4j.data.command.input.NumberFileSplitCommand;
+import org.abondar.experimental.ml4j.data.command.split.FileSplitCommand;
+import org.abondar.experimental.ml4j.data.command.split.NumberFileSplitCommand;
+import org.abondar.experimental.ml4j.data.command.split.TransformSplitCommand;
 import org.bytedeco.javacpp.tools.Slf4jLogger;
 
 public class DataCommandSwitcher extends CommandSwitcher {
@@ -21,6 +22,11 @@ public class DataCommandSwitcher extends CommandSwitcher {
                 case NFSC:
                     NumberFileSplitCommand nfsc = new NumberFileSplitCommand();
                     executor.executeCommand(nfsc);
+                    break;
+
+                case TSC:
+                    TransformSplitCommand tsc = new TransformSplitCommand();
+                    executor.executeCommand(tsc);
                     break;
             }
         } catch (IllegalArgumentException ex) {

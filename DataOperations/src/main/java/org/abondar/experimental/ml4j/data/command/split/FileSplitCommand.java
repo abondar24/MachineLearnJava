@@ -1,4 +1,4 @@
-package org.abondar.experimental.ml4j.data.command.input;
+package org.abondar.experimental.ml4j.data.command.split;
 
 import org.abondar.experimental.ml4j.command.Command;
 import org.bytedeco.javacpp.tools.Slf4jLogger;
@@ -17,6 +17,6 @@ public class FileSplitCommand implements Command {
 
         var msg = String.format("Found jpeg files %d",split.length());
         logger.info(msg);
-        Arrays.stream(split.locations()).forEach(System.out::println);
+        Arrays.stream(split.locations()).forEach(ur-> logger.info(ur.toString()));
     }
 }
