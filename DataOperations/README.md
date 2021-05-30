@@ -9,6 +9,7 @@ Examples for data operations and transformation
 3. Transform Split (tsc) - Normalize file urls and generate output ones.
 4. CSV Reader (csvrc) - Read CSV file.
 5. Image Reader (irc) - Read image.
+6. Transform Reader (trc) - Read CSV to Schema and transform it.
 
 ## Build And Run
 
