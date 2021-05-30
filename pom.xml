@@ -9,8 +9,105 @@
     <version>0.1-SNAPSHOT</version>
 
     <properties>
+        <dl4j.version>1.0.0-M1</dl4j.version>
+        <nd4j.version>1.0.0-M1</nd4j.version>
+        <datavec.version>1.0.0-M1</datavec.version>
+        <slf4j.version>1.7.30</slf4j.version>
+        <maven.compiler.plugin>3.8.1</maven.compiler.plugin>
+        <maven.dependency.plugin>3.1.2</maven.dependency.plugin>
+        <maven.shade.plugin>3.2.4</maven.shade.plugin>
+        <maven.jar.plugin>3.2.0</maven.jar.plugin>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
     </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.deeplearning4j</groupId>
+            <artifactId>deeplearning4j-core</artifactId>
+            <version>${dl4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.nd4j</groupId>
+            <artifactId>nd4j-native-platform</artifactId>
+            <version>${nd4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.datavec</groupId>
+            <artifactId>datavec-api</artifactId>
+            <version>${datavec.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+
+
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven.compiler.plugin}</version>
+                <configuration>
+                    <source>${maven.compiler.source}</source>
+                    <target>${maven.compiler.source}</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>${maven.dependency.plugin}</version>
+                <executions>
+                    <execution>
+                        <id>copy-dependencies</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/lib</outputDirectory>
+                            <overWriteReleases>false</overWriteReleases>
+                            <overWriteSnapshots>false</overWriteSnapshots>
+                            <overWriteIfNewer>true</overWriteIfNewer>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>${maven.shade.plugin}</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+<!--            <plugin>-->
+<!--                <groupId>org.apache.maven.plugins</groupId>-->
+<!--                <artifactId>maven-jar-plugin</artifactId>-->
+<!--                <version>${maven.jar.plugin}</version>-->
+<!--                <configuration>-->
+<!--                    <archive>-->
+<!--                        <manifest>-->
+<!--                            <addDefaultImplementationEntries>true</addDefaultImplementationEntries>-->
+<!--                            <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>-->
+<!--                            <mainClass>org.abondar.experimental.numberencoding.NumbersEncoding</mainClass>-->
+<!--                        </manifest>-->
+<!--                    </archive>-->
+<!--                    <finalName>encoder</finalName>-->
+<!--                </configuration>-->
+<!--            </plugin>-->
+
+
+        </plugins>
+    </build>
 
 </project>
