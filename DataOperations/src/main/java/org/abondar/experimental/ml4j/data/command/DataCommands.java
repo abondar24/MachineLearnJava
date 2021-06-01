@@ -7,6 +7,7 @@ public enum DataCommands {
     JRC,
     NFSC,
     RRC,
+    SC,
     TRC,
     TSC
 }
