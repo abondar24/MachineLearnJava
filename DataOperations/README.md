@@ -13,6 +13,7 @@ Examples for data operations and transformation
 7. Regex Sequence Reader (rrc) - Read file data matching a regex pattern.
 8. Jackson Sequesnce Reader (jrc) - Read text file with data in json format.
 9. Serialization (sc) - Transform data and serialize to JSON or YAML.
+10. Exector (ec) - Data tranformation using local executor.
 
 ## Build And Run
 

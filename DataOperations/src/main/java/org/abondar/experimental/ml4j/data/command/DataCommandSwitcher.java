@@ -1,6 +1,7 @@
 package org.abondar.experimental.ml4j.data.command;
 
 import org.abondar.experimental.ml4j.command.CommandSwitcher;
+import org.abondar.experimental.ml4j.data.command.executor.ExecutorCommand;
 import org.abondar.experimental.ml4j.data.command.reader.CsvReaderCommand;
 import org.abondar.experimental.ml4j.data.command.reader.ImageReaderCommand;
 import org.abondar.experimental.ml4j.data.command.reader.JacksonReaderCommand;
@@ -23,6 +24,11 @@ public class DataCommandSwitcher extends CommandSwitcher {
                 case CSVRC:
                     var csvrc = new CsvReaderCommand();
                     executor.executeCommand(csvrc);
+                    break;
+
+                case EC:
+                    var ec = new ExecutorCommand();
+                    executor.executeCommand(ec);
                     break;
 
                 case FSC:
