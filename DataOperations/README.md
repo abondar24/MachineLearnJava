@@ -11,9 +11,10 @@ Examples for data operations and transformation
 5. Image Reader (irc) - Read image.
 6. Transform Reader (trc) - Read CSV to Schema and transform it.
 7. Regex Sequence Reader (rrc) - Read file data matching a regex pattern.
-8. Jackson Sequesnce Reader (jrc) - Read text file with data in json format.
+8. Jackson Sequence Reader (jrc) - Read text file with data in json format.
 9. Serialization (sc) - Transform data and serialize to JSON or YAML.
-10. Exector (ec) - Data tranformation using local executor.
+10. Executor (ec) - Data transformation using local executor.
+11. Normalization (nc) - Data normalization.
 
 ## Build And Run
 
