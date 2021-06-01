@@ -11,6 +11,7 @@
     <modules>
         <module>DataOperations</module>
         <module>Command</module>
+        <module>DeepNetwork</module>
     </modules>
 
     <properties>
