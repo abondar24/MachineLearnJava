@@ -3,6 +3,7 @@ package org.abondar.experimental.ml4j.data.command;
 import org.abondar.experimental.ml4j.command.CommandSwitcher;
 import org.abondar.experimental.ml4j.data.command.reader.CsvReaderCommand;
 import org.abondar.experimental.ml4j.data.command.reader.ImageReaderCommand;
+import org.abondar.experimental.ml4j.data.command.reader.JacksonReaderCommand;
 import org.abondar.experimental.ml4j.data.command.reader.RegexReaderCommand;
 import org.abondar.experimental.ml4j.data.command.reader.TransformReaderCommand;
 import org.abondar.experimental.ml4j.data.command.split.FileSplitCommand;
@@ -31,6 +32,11 @@ public class DataCommandSwitcher extends CommandSwitcher {
                 case IRC:
                     var irc = new ImageReaderCommand();
                     executor.executeCommand(irc);
+                    break;
+
+                case JRC:
+                    var jrc = new JacksonReaderCommand();
+                    executor.executeCommand(jrc);
                     break;
 
                 case NFSC:

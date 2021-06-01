@@ -10,7 +10,8 @@ Examples for data operations and transformation
 4. CSV Reader (csvrc) - Read CSV file.
 5. Image Reader (irc) - Read image.
 6. Transform Reader (trc) - Read CSV to Schema and transform it.
-7. Regex Sequence Reader (rrc) - Read file data matching a regex pattern
+7. Regex Sequence Reader (rrc) - Read file data matching a regex pattern.
+8. Jackson Sequesnce Reader (jrc) - Read text file with data in json format.
 
 ## Build And Run
 
