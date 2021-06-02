@@ -1,5 +1,6 @@
 package org.abondar.experimental.ml4j.deepnet.net;
 
+import org.abondar.experimental.ml4j.deepnet.columns.Columns;
 import org.abondar.experimental.ml4j.deepnet.columns.Countries;
 import org.abondar.experimental.ml4j.deepnet.columns.Genders;
 import org.bytedeco.javacpp.tools.Slf4jLogger;
@@ -17,35 +18,21 @@ import org.nd4j.linalg.dataset.api.preprocessor.NormalizerStandardize;
 import java.io.File;
 import java.io.IOException;
 
-import static org.abondar.experimental.ml4j.deepnet.columns.Columns.Age;
-import static org.abondar.experimental.ml4j.deepnet.columns.Columns.Balance;
-import static org.abondar.experimental.ml4j.deepnet.columns.Columns.CreditScore;
-import static org.abondar.experimental.ml4j.deepnet.columns.Columns.CustomerId;
-import static org.abondar.experimental.ml4j.deepnet.columns.Columns.EstimatedSalary;
-import static org.abondar.experimental.ml4j.deepnet.columns.Columns.Gender;
-import static org.abondar.experimental.ml4j.deepnet.columns.Columns.Geography;
-import static org.abondar.experimental.ml4j.deepnet.columns.Columns.HasCrCard;
-import static org.abondar.experimental.ml4j.deepnet.columns.Columns.IsActiveMember;
-import static org.abondar.experimental.ml4j.deepnet.columns.Columns.NumOfProducts;
-import static org.abondar.experimental.ml4j.deepnet.columns.Columns.RowNumber;
-import static org.abondar.experimental.ml4j.deepnet.columns.Columns.Surname;
-import static org.abondar.experimental.ml4j.deepnet.columns.Columns.Tenure;
-
 public class DeepNetChecker {
     private static final Slf4jLogger LOGGER = new Slf4jLogger(DeepNetChecker.class);
 
     private Schema buildSchema() {
         return new Schema.Builder()
-                .addColumnString(RowNumber.name())
-                .addColumnInteger(CustomerId.name())
-                .addColumnString(Surname.name())
-                .addColumnInteger(CreditScore.name())
-                .addColumnCategorical(Geography.name(), Countries.getList())
-                .addColumnCategorical(Gender.name(), Genders.getList())
-                .addColumnsInteger(Age.name(), Tenure.name())
-                .addColumnDouble(Balance.name())
-                .addColumnsInteger(NumOfProducts.name(), HasCrCard.name(), IsActiveMember.name())
-                .addColumnDouble(EstimatedSalary.name())
+                .addColumnString(Columns.RowNumber.name())
+                .addColumnInteger(Columns.CustomerId.name())
+                .addColumnString(Columns.Surname.name())
+                .addColumnInteger(Columns.CreditScore.name())
+                .addColumnCategorical(Columns.Geography.name(), Countries.getList())
+                .addColumnCategorical(Columns.Gender.name(), Genders.getList())
+                .addColumnsInteger(Columns.Age.name(), Columns.Tenure.name())
+                .addColumnDouble(Columns.Balance.name())
+                .addColumnsInteger(Columns.NumOfProducts.name(), Columns.HasCrCard.name(), Columns.IsActiveMember.name())
+                .addColumnDouble(Columns.EstimatedSalary.name())
                 .build();
     }
 
@@ -64,9 +51,9 @@ public class DeepNetChecker {
 
     private RecordReader applyTransform(Schema schema, RecordReader recordReader) {
         var transformProcess = new TransformProcess.Builder(schema)
-                .removeColumns(RowNumber.name(), CustomerId.name(), Surname.name())
-                .categoricalToInteger(Gender.name())
-                .categoricalToOneHot(Geography.name())
+                .removeColumns(Columns.RowNumber.name(), Columns.CustomerId.name(), Columns.Surname.name())
+                .categoricalToInteger(Columns.Gender.name())
+                .categoricalToOneHot(Columns.Geography.name())
                 .removeColumns("Geography[France]")
                 .build();
 

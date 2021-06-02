@@ -1,7 +1,6 @@
 package org.abondar.experimental.ml4j.deepnet.command;
 
 import org.abondar.experimental.ml4j.command.CommandSwitcher;
-import org.abondar.experimental.ml4j.deepnet.net.DeepNetwork;
 import org.bytedeco.javacpp.tools.Slf4jLogger;
 
 public class NetCommandSwitcher extends CommandSwitcher {

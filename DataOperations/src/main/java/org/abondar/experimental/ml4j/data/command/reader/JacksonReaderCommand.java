@@ -2,12 +2,10 @@ package org.abondar.experimental.ml4j.data.command.reader;
 
 import org.abondar.experimental.ml4j.command.Command;
 import org.bytedeco.javacpp.tools.Slf4jLogger;
-import org.datavec.api.conf.Configuration;
 import org.datavec.api.records.reader.impl.jackson.FieldSelection;
 import org.datavec.api.records.reader.impl.jackson.JacksonLineRecordReader;
 import org.datavec.api.split.FileSplit;
 import org.nd4j.shade.jackson.core.JsonFactory;
-import org.nd4j.shade.jackson.core.JsonGenerator;
 import org.nd4j.shade.jackson.core.JsonParser;
 import org.nd4j.shade.jackson.databind.ObjectMapper;
 

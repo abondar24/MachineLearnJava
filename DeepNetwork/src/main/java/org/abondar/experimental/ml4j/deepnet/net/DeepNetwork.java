@@ -1,7 +1,7 @@
 package org.abondar.experimental.ml4j.deepnet.net;
 
-import org.abondar.experimental.ml4j.deepnet.columns.Countries;
 import org.abondar.experimental.ml4j.deepnet.columns.Genders;
+import org.abondar.experimental.ml4j.deepnet.columns.Countries;
 import org.bytedeco.javacpp.tools.Slf4jLogger;
 import org.datavec.api.records.reader.RecordReader;
 import org.datavec.api.records.reader.impl.csv.CSVRecordReader;
