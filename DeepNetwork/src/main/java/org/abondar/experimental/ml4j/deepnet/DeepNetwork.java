@@ -11,11 +11,28 @@ import org.datavec.api.transform.TransformProcess;
 import org.datavec.api.transform.schema.Schema;
 import org.deeplearning4j.datasets.datavec.RecordReaderDataSetIterator;
 import org.deeplearning4j.datasets.iterator.DataSetIteratorSplitter;
+import org.deeplearning4j.nn.conf.MultiLayerConfiguration;
+import org.deeplearning4j.nn.conf.NeuralNetConfiguration;
+import org.deeplearning4j.nn.conf.layers.DenseLayer;
+import org.deeplearning4j.nn.conf.layers.OutputLayer;
+import org.deeplearning4j.nn.multilayer.MultiLayerNetwork;
+import org.deeplearning4j.nn.weights.WeightInit;
+import org.deeplearning4j.optimize.listeners.ScoreIterationListener;
+import org.deeplearning4j.ui.api.UIServer;
+import org.deeplearning4j.ui.model.stats.StatsListener;
+import org.deeplearning4j.ui.model.storage.InMemoryStatsStorage;
+import org.deeplearning4j.util.ModelSerializer;
+import org.nd4j.linalg.activations.Activation;
 import org.nd4j.linalg.dataset.api.iterator.DataSetIterator;
+import org.nd4j.linalg.dataset.api.preprocessor.AbstractDataSetNormalizer;
 import org.nd4j.linalg.dataset.api.preprocessor.NormalizerStandardize;
+import org.nd4j.linalg.factory.Nd4j;
+import org.nd4j.linalg.learning.config.Adam;
+import org.nd4j.linalg.lossfunctions.impl.LossMCXENT;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 import static org.abondar.experimental.ml4j.deepnet.columns.Columns.Age;
 import static org.abondar.experimental.ml4j.deepnet.columns.Columns.Balance;
@@ -32,9 +49,9 @@ import static org.abondar.experimental.ml4j.deepnet.columns.Columns.RowNumber;
 import static org.abondar.experimental.ml4j.deepnet.columns.Columns.Surname;
 import static org.abondar.experimental.ml4j.deepnet.columns.Columns.Tenure;
 
-public class MultilayerNetwork {
+public class DeepNetwork {
 
-    private static final Slf4jLogger LOGGER = new Slf4jLogger(MultilayerNetwork.class);
+    private static final Slf4jLogger LOGGER = new Slf4jLogger(DeepNetwork.class);
 
     private RecordReader createReader(String filepath) throws IOException, InterruptedException {
         var csvSkipLine = 1;
@@ -77,26 +94,97 @@ public class MultilayerNetwork {
         return new TransformProcessRecordReader(recordReader, transformProcess);
     }
 
-    private DataSetIteratorSplitter getDataset(RecordReader reader) {
+    private DataSetIterator getDataset(RecordReader reader) {
         var batchSize = 1;
         var labelIndex = 1;
         var numClasses = 2;
 
-        var datasetIterator = new RecordReaderDataSetIterator.Builder(reader, batchSize)
+        return new RecordReaderDataSetIterator.Builder(reader, batchSize)
                 .classification(labelIndex, numClasses)
                 .build();
-
-        return normalizeData(datasetIterator) ;
     }
 
-    private DataSetIteratorSplitter normalizeData(DataSetIterator dataSetIterator) {
+    private NormalizerStandardize initNormalizer(DataSetIterator dataSetIterator){
         var normalizer = new NormalizerStandardize();
         normalizer.fit(dataSetIterator);
         dataSetIterator.setPreProcessor(normalizer);
 
+        return normalizer;
+    }
+
+    private  DataSetIteratorSplitter splitToBatches(DataSetIterator dataSetIterator){
         var totalBatches = 1250;
         var ratio = 0.8;
         return new DataSetIteratorSplitter(dataSetIterator, totalBatches, ratio);
+    }
+
+
+    private DenseLayer buildDenseLayer(int in, int out) {
+        var dropout = 0.9;
+        return new DenseLayer.Builder()
+                .nIn(in)
+                .nOut(out)
+                .activation(Activation.RELU)
+                .dropOut(dropout)
+                .build();
+    }
+
+    private OutputLayer buildOutputLayer(int in, int out) {
+        var weightsArray = Nd4j.create(new double[]{0.57, 0.75});
+        var loss = new LossMCXENT(weightsArray);
+
+        return new OutputLayer.Builder(loss)
+                .nIn(in)
+                .nOut(out)
+                .activation(Activation.SOFTMAX)
+                .build();
+    }
+
+    private MultiLayerConfiguration buildNetConfig() {
+        var adamLearnRate = 0.015D;
+
+        return new NeuralNetConfiguration.Builder()
+                .weightInit(WeightInit.RELU)
+                .updater(new Adam(adamLearnRate))
+                .list()
+                .layer(buildDenseLayer(11, 6))
+                .layer(buildDenseLayer(6, 6))
+                .layer(buildDenseLayer(6, 4))
+                .layer(buildOutputLayer(4, 2))
+                .build();
+
+    }
+
+    private MultiLayerNetwork initTraining(DataSetIteratorSplitter dataset, MultiLayerConfiguration netConfig) {
+        var ui = UIServer.getInstance();
+        var statsStorage = new InMemoryStatsStorage();
+
+        LOGGER.info("Init training");
+        var network = new MultiLayerNetwork(netConfig);
+        var iterations = 100;
+
+        network.init();
+        network.setListeners(new ScoreIterationListener(iterations),
+                new StatsListener(statsStorage));
+
+        ui.attach(statsStorage);
+
+        //train set
+        var epochs = 100;
+        network.fit(dataset.getIterators().get(0),epochs);
+
+        var labels = List.of("0","1");
+        var eval = network.evaluate(dataset.getIterators().get(1), labels);
+        LOGGER.info(eval.stats());
+
+        return network;
+
+    }
+
+    private void writeModel (MultiLayerNetwork network,NormalizerStandardize normalizer) throws IOException{
+        var file = new File("model.zip");
+        ModelSerializer.writeModel(network,file,true);
+        ModelSerializer.addNormalizerToModel(file,normalizer);
     }
 
     public void buildModel(String filePath) throws IOException, InterruptedException {
@@ -105,8 +193,14 @@ public class MultilayerNetwork {
 
         var transformReader = applyTransform(schema, reader);
         var dataset = getDataset(transformReader);
-    }
+        var normalizer = initNormalizer(dataset);
+        var splitDataset = splitToBatches(dataset);
 
+        var netConfig = buildNetConfig();
+
+        var net = initTraining(splitDataset,netConfig);
+        writeModel(net,normalizer);
+    }
 
 
 }

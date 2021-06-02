@@ -11,8 +11,8 @@ public class Main {
     public static void main(String[] args) {
 
        try {
-           var net = new MultilayerNetwork();
-           net.buildModel("/data/model.csv");
+           var net = new DeepNetwork();
+           net.buildModel("data/model.csv");
 
        } catch (IOException | InterruptedException ex){
            logger.error(ex.getMessage());
