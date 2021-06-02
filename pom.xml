@@ -12,6 +12,7 @@
         <module>DataOperations</module>
         <module>Command</module>
         <module>DeepNetwork</module>
+        <module>ConvolutionalNetwork</module>
     </modules>
 
     <properties>
