@@ -1,4 +1,4 @@
-package org.abondar.experimental.ml4j.deepnet;
+package org.abondar.experimental.ml4j.deepnet.net;
 
 import org.abondar.experimental.ml4j.deepnet.columns.Countries;
 import org.abondar.experimental.ml4j.deepnet.columns.Genders;
@@ -24,7 +24,6 @@ import org.deeplearning4j.ui.model.storage.InMemoryStatsStorage;
 import org.deeplearning4j.util.ModelSerializer;
 import org.nd4j.linalg.activations.Activation;
 import org.nd4j.linalg.dataset.api.iterator.DataSetIterator;
-import org.nd4j.linalg.dataset.api.preprocessor.AbstractDataSetNormalizer;
 import org.nd4j.linalg.dataset.api.preprocessor.NormalizerStandardize;
 import org.nd4j.linalg.factory.Nd4j;
 import org.nd4j.linalg.learning.config.Adam;
@@ -95,8 +94,8 @@ public class DeepNetwork {
     }
 
     private DataSetIterator getDataset(RecordReader reader) {
-        var batchSize = 1;
-        var labelIndex = 1;
+        var batchSize = 8;
+        var labelIndex = 11;
         var numClasses = 2;
 
         return new RecordReaderDataSetIterator.Builder(reader, batchSize)
@@ -171,10 +170,10 @@ public class DeepNetwork {
 
         //train set
         var epochs = 100;
-        network.fit(dataset.getIterators().get(0),epochs);
+        network.fit(dataset.getTrainIterator(),epochs);
 
         var labels = List.of("0","1");
-        var eval = network.evaluate(dataset.getIterators().get(1), labels);
+        var eval = network.evaluate(dataset.getTestIterator(), labels);
         LOGGER.info(eval.stats());
 
         return network;

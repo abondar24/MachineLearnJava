@@ -1,23 +1,21 @@
 package org.abondar.experimental.ml4j.deepnet;
 
+import org.abondar.experimental.ml4j.command.CommandSwitcher;
+import org.abondar.experimental.ml4j.deepnet.command.NetCommandSwitcher;
 import org.bytedeco.javacpp.tools.Slf4jLogger;
-
-import java.io.IOException;
 
 public class Main {
 
-    private static final Slf4jLogger logger = new Slf4jLogger(Main.class);
 
     public static void main(String[] args) {
 
-       try {
-           var net = new DeepNetwork();
-           net.buildModel("data/model.csv");
-
-       } catch (IOException | InterruptedException ex){
-           logger.error(ex.getMessage());
-           System.exit(2);
-       }
-
+        var logger = new Slf4jLogger(Main.class);
+        CommandSwitcher dcs = new NetCommandSwitcher();
+        if (args.length==0){
+            logger.error("Missing argument. Please check documentation for available arguments");
+            System.exit(0);
+        }
+        String cmd = args[0].toUpperCase();
+        dcs.executeCommand(cmd);
     }
 }
