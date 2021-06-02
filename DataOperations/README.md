@@ -17,7 +17,10 @@ Examples for data operations and transformation
 11. Normalization (nc) - Data normalization.
 
 ## Build And Run
+```
+mvn clean install
 
-See [here](../README.md) build and run section.
+java -jar data.jar <command>
+```
 
 Command names are in ().

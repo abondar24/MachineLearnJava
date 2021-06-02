@@ -15,6 +15,10 @@ public class NetCommandSwitcher extends CommandSwitcher {
                      var trc = new TrainCommand();
                      executor.executeCommand(trc);
                      break;
+
+                case CHECK:
+                    var cc = new CheckCommand();
+                    executor.executeCommand(cc);
             }
 
         } catch (IllegalArgumentException ex) {

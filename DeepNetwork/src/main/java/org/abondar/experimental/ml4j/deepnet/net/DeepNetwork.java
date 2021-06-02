@@ -52,7 +52,7 @@ public class DeepNetwork {
 
     private static final Slf4jLogger LOGGER = new Slf4jLogger(DeepNetwork.class);
 
-    private RecordReader createReader(String filepath) throws IOException, InterruptedException {
+    private RecordReader initReader(String filepath) throws IOException, InterruptedException {
         var csvSkipLine = 1;
         var csvDelim = ',';
 
@@ -187,7 +187,7 @@ public class DeepNetwork {
     }
 
     public void buildModel(String filePath) throws IOException, InterruptedException {
-        var reader = createReader(filePath);
+        var reader = initReader(filePath);
         var schema = buildSchema();
 
         var transformReader = applyTransform(schema, reader);

@@ -8,11 +8,3 @@ For Python Machine Learning examples refer [here](https://github.com/abondar24/M
 1. [Data Operations](DataOperations/README.md)
 2. [Deep Neural Network](DeepNetwork/README.md)
 
-## Build and Run
-```
-cd <module-dir>
-
-mvn clean install
-
-java -jar <jar-name> <command>
-```
