@@ -22,7 +22,7 @@ public class NetCommandSwitcher extends CommandSwitcher {
             }
 
         } catch (IllegalArgumentException ex) {
-            LOGGER.error("Check documentation for command list");
+            LOGGER.error(ex.getMessage());
             System.exit(1);
         }
     }

@@ -13,7 +13,7 @@ public class TrainCommand implements Command {
 
         try {
             var net = new ConvolutionalNetwork();
-            net.buildModel("data/model.csv");
+            net.buildModel("data/dataset.zip");
 
         } catch (IOException | InterruptedException ex){
             logger.error(ex.getMessage());
