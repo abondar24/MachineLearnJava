@@ -5,6 +5,7 @@ import org.abondar.experimental.ml4j.nlp.command.iterator.BasicLineIteratorComma
 import org.abondar.experimental.ml4j.nlp.command.iterator.CollectionIteratorCommand;
 import org.abondar.experimental.ml4j.nlp.command.iterator.FileIteratorCommand;
 import org.abondar.experimental.ml4j.nlp.command.iterator.LineIteratorCommand;
+import org.abondar.experimental.ml4j.nlp.command.iterator.UimaIteratorCommand;
 import org.bytedeco.javacpp.tools.Slf4jLogger;
 
 public class NlpCommandSwitcher extends CommandSwitcher {
@@ -33,6 +34,11 @@ public class NlpCommandSwitcher extends CommandSwitcher {
                 case LIC:
                     var lic = new LineIteratorCommand();
                     executor.executeCommand(lic);
+                    break;
+
+                case UIC:
+                    var uic = new UimaIteratorCommand();
+                    executor.executeCommand(uic);
                     break;
 
             }
