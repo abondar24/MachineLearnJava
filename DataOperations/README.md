@@ -1,6 +1,6 @@
 # Data Operations
 
-Examples for data operations and transformation
+Examples of data operations and transformation
 
 ## Examples
 
