@@ -4,27 +4,24 @@ import org.abondar.experimental.ml4j.command.Command;
 import org.deeplearning4j.text.sentenceiterator.CollectionSentenceIterator;
 
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
-public class CollectionIteratorCommand extends IteratorCommand implements Command  {
+public class CollectionIteratorCommand extends IteratorCommand implements Command {
     @Override
     public void execute() {
 
         List<String> sentences = new ArrayList<>();
         try {
-           sentences = readFile("data/raw_sentences.txt");
-        } catch (IOException ex){
+            sentences = readFile("data/raw_sentences.txt");
+        } catch (IOException ex) {
             logger.error(ex.getMessage());
             System.exit(2);
         }
 
-        if (sentences.isEmpty()){
+        if (sentences.isEmpty()) {
             logger.error("Empty file contents");
             System.exit(1);
         }

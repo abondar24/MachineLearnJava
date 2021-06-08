@@ -3,6 +3,7 @@ package org.abondar.experimental.ml4j.nlp.command;
 import org.abondar.experimental.ml4j.command.CommandSwitcher;
 import org.abondar.experimental.ml4j.nlp.command.iterator.BasicLineIteratorCommand;
 import org.abondar.experimental.ml4j.nlp.command.iterator.CollectionIteratorCommand;
+import org.abondar.experimental.ml4j.nlp.command.iterator.FileIteratorCommand;
 import org.abondar.experimental.ml4j.nlp.command.iterator.LineIteratorCommand;
 import org.bytedeco.javacpp.tools.Slf4jLogger;
 
@@ -22,6 +23,11 @@ public class NlpCommandSwitcher extends CommandSwitcher {
                 case CIC:
                     var cic = new CollectionIteratorCommand();
                     executor.executeCommand(cic);
+                    break;
+
+                case FIC:
+                    var fic = new FileIteratorCommand();
+                    executor.executeCommand(fic);
                     break;
 
                 case LIC:

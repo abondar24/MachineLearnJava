@@ -7,6 +7,7 @@ Examples of nlp
 1. Basic Line Iterator (blic) - Simple single line sentence iterator.
 2. Line Iterator (lic) - Multi-Sentence iterator.
 3. Collection Iterator (cic) - Iterator working with list of strings.
+4. File Iterator (fic) - Iterator working with directories and files.
 
 ## Datasets
 
