@@ -4,7 +4,8 @@ Examples of nlp
 
 ## Examples
 
-1. Basic Line Iterator (blic) - Simple single line sentence iterator
+1. Basic Line Iterator (blic) - Simple single line sentence iterator.
+2. Line Iterator (lic) - Multi-Sentence iterator.
 
 
 ## Datasets

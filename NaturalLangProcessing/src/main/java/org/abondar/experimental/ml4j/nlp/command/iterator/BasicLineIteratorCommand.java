@@ -25,6 +25,9 @@ public class BasicLineIteratorCommand implements Command {
 
             iterator.reset();
             SentenceDataPreProcessor.setPreProcessor(iterator);
+            while (iterator.hasNext()){
+                logger.info(iterator.nextSentence());
+            }
         } catch (IOException ex){
             logger.error(ex.getMessage());
             System.exit(2);
