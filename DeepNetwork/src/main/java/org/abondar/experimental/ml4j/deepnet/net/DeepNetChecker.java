@@ -36,7 +36,7 @@ public class DeepNetChecker {
                 .build();
     }
 
-    private RecordReader initReader(String filepath) throws IOException, InterruptedException {
+    private RecordReader generateReader(String filepath) throws IOException, InterruptedException {
         var csvSkipLine = 1;
         var csvDelim = ',';
 
@@ -63,7 +63,7 @@ public class DeepNetChecker {
     private INDArray generateOutput(String testFilePath, String modelFilePath) throws IOException, InterruptedException {
         var modelFile = new File(modelFilePath);
         var net = ModelSerializer.restoreMultiLayerNetwork(modelFile);
-        var reader = initReader(testFilePath);
+        var reader = generateReader(testFilePath);
 
         NormalizerStandardize normalizer = ModelSerializer.restoreNormalizerFromFile(modelFile);
         var batchSize = 1;
