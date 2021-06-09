@@ -6,4 +6,5 @@ public enum NlpCommands {
     FIC,
     LIC,
     UIC,
+    W2VC,
 }

@@ -9,10 +9,11 @@ Examples of nlp
 3. Collection Iterator (cic) - Iterator working with list of strings.
 4. File Iterator (fic) - Iterator working with directories and files.
 5. UIMA Iterator (uic) - UIMA iterator working with directories and segmenting the sentences.
+6. Word2Vec (w2vc) - Word2Vec training example
+
 ## Datasets
 
-1. [Google news vector](https://deeplearning4jblob.blob.core.windows.net/resources/wordvectors/GoogleNews-vectors-negative300.bin.gz)
-2. [IMDB review data](http://ai.stanford.edu/~amaas/data/sentiment/aclImdb_v1.tar.gz)
+1. [IMDB review data](http://ai.stanford.edu/~amaas/data/sentiment/aclImdb_v1.tar.gz)
 
 
 ## Build And Run
