@@ -1,13 +1,13 @@
 package org.abondar.experimental.ml4j.data.command.reader;
 
 import org.abondar.experimental.ml4j.command.Command;
-import org.bytedeco.javacpp.tools.Slf4jLogger;
 import org.datavec.api.records.reader.impl.jackson.FieldSelection;
 import org.datavec.api.records.reader.impl.jackson.JacksonLineRecordReader;
 import org.datavec.api.split.FileSplit;
 import org.nd4j.shade.jackson.core.JsonFactory;
 import org.nd4j.shade.jackson.core.JsonParser;
 import org.nd4j.shade.jackson.databind.ObjectMapper;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.IOException;
@@ -16,7 +16,7 @@ import java.io.IOException;
 public class JacksonReaderCommand implements Command {
     @Override
     public void execute() {
-        var logger = new Slf4jLogger(JacksonReaderCommand.class);
+        var logger = LoggerFactory.getLogger(JacksonReaderCommand.class);
 
         var fields = new FieldSelection.Builder()
                 .addField("delta")

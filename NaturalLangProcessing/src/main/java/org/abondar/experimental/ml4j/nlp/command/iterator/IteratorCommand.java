@@ -1,12 +1,13 @@
 package org.abondar.experimental.ml4j.nlp.command.iterator;
 
 import org.abondar.experimental.ml4j.nlp.preprocessor.SentenceDataPreProcessor;
-import org.bytedeco.javacpp.tools.Slf4jLogger;
 import org.deeplearning4j.text.sentenceiterator.SentenceIterator;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class IteratorCommand {
 
-    protected final Slf4jLogger logger = new Slf4jLogger(CollectionIteratorCommand.class);
+    protected final Logger logger = LoggerFactory.getLogger(IteratorCommand.class);
 
     protected void printIterator(SentenceIterator iterator){
         int count = 0;

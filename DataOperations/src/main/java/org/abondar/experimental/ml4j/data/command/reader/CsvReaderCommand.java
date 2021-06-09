@@ -1,9 +1,9 @@
 package org.abondar.experimental.ml4j.data.command.reader;
 
 import org.abondar.experimental.ml4j.command.Command;
-import org.bytedeco.javacpp.tools.Slf4jLogger;
 import org.datavec.api.records.reader.impl.csv.CSVRecordReader;
 import org.datavec.api.split.FileSplit;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.IOException;
@@ -11,7 +11,7 @@ import java.io.IOException;
 public class CsvReaderCommand implements Command {
     @Override
     public void execute() {
-        var logger = new Slf4jLogger(CsvReaderCommand.class);
+        var logger = LoggerFactory.getLogger(CsvReaderCommand.class);
         var skipRows= 1;
         var delim = ',';
 

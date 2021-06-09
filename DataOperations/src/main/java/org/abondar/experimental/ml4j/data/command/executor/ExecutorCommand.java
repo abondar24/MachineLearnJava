@@ -10,6 +10,7 @@ import org.datavec.api.transform.TransformProcess;
 import org.datavec.api.transform.schema.Schema;
 import org.datavec.api.writable.Writable;
 import org.datavec.local.transforms.LocalTransformExecutor;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.IOException;
@@ -19,7 +20,7 @@ import java.util.List;
 public class ExecutorCommand implements Command {
     @Override
     public void execute() {
-        var logger = new Slf4jLogger(ExecutorCommand.class);
+        var logger = LoggerFactory.getLogger(ExecutorCommand.class);
 
         var skipLines = 1;
         var csvDelim = ',';

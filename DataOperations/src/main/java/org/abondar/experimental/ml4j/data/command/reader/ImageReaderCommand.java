@@ -1,10 +1,10 @@
 package org.abondar.experimental.ml4j.data.command.reader;
 
 import org.abondar.experimental.ml4j.command.Command;
-import org.bytedeco.javacpp.tools.Slf4jLogger;
 import org.datavec.api.io.labels.ParentPathLabelGenerator;
 import org.datavec.api.split.FileSplit;
 import org.datavec.image.recordreader.ImageRecordReader;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.IOException;
@@ -12,7 +12,7 @@ import java.io.IOException;
 public class ImageReaderCommand implements Command {
     @Override
     public void execute() {
-        var logger = new Slf4jLogger(ImageReaderCommand.class);
+        var logger = LoggerFactory.getLogger(ImageReaderCommand.class);
 
         var imgHeight = 100;
         var imgWidth = 100;

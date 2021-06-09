@@ -1,9 +1,9 @@
 package org.abondar.experimental.ml4j.data.command.split;
 
 import org.abondar.experimental.ml4j.command.Command;
-import org.bytedeco.javacpp.tools.Slf4jLogger;
 import org.datavec.api.split.CollectionInputSplit;
 import org.datavec.api.split.TransformSplit;
+import org.slf4j.LoggerFactory;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -13,7 +13,7 @@ import java.util.List;
 public class TransformSplitCommand implements Command {
     @Override
     public void execute() {
-        var logger = new Slf4jLogger(TransformSplitCommand.class);
+        var logger = LoggerFactory.getLogger(TransformSplitCommand.class);
 
         try {
 

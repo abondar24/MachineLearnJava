@@ -1,8 +1,8 @@
 package org.abondar.experimental.ml4j.data.command.split;
 
 import org.abondar.experimental.ml4j.command.Command;
-import org.bytedeco.javacpp.tools.Slf4jLogger;
 import org.datavec.api.split.FileSplit;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.util.Arrays;
@@ -10,7 +10,7 @@ import java.util.Arrays;
 public class FileSplitCommand implements Command {
     @Override
     public void execute() {
-        var logger = new Slf4jLogger(FileSplitCommand.class);
+        var logger = LoggerFactory.getLogger(FileSplitCommand.class);
         var allowedFormats = new String[]{".jpeg",".jpg"};
         var file = new File("data");
         var split = new FileSplit(file,allowedFormats,true);

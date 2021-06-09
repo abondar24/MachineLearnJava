@@ -17,17 +17,18 @@ import org.deeplearning4j.text.tokenization.tokenizerfactory.DefaultTokenizerFac
 import org.deeplearning4j.text.tokenization.tokenizerfactory.TokenizerFactory;
 import org.nd4j.common.primitives.Pair;
 import org.nd4j.linalg.api.ndarray.INDArray;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 
 public class Word2VecCommand implements Command {
 
-    private static final Logger logger = Logger.getLogger(Word2VecCommand.class.getName());
+    private static final Logger logger = LoggerFactory.getLogger(Word2VecCommand.class);
 
 
     private SentenceIterator getIterator(String filename){
@@ -119,7 +120,7 @@ public class Word2VecCommand implements Command {
             saveModel(model,vectorFile);
             visualizeData(vectorFile);
         } catch (IOException ex){
-            logger.log(Level.SEVERE,ex.getMessage());
+            logger.error(ex.getMessage());
             System.exit(2);
         }
 

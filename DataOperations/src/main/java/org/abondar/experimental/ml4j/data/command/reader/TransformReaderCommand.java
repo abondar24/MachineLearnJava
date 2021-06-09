@@ -1,12 +1,12 @@
 package org.abondar.experimental.ml4j.data.command.reader;
 
 import org.abondar.experimental.ml4j.command.Command;
-import org.bytedeco.javacpp.tools.Slf4jLogger;
 import org.datavec.api.records.reader.impl.csv.CSVRecordReader;
 import org.datavec.api.records.reader.impl.transform.TransformProcessRecordReader;
 import org.datavec.api.split.FileSplit;
 import org.datavec.api.transform.TransformProcess;
 import org.datavec.api.transform.schema.Schema;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.IOException;
@@ -15,7 +15,7 @@ import java.util.List;
 public class TransformReaderCommand implements Command {
     @Override
     public void execute() {
-        var logger = new Slf4jLogger(TransformReaderCommand.class);
+        var logger = LoggerFactory.getLogger(TransformReaderCommand.class);
         var skipRows= 1;
         var delim = ',';
 
