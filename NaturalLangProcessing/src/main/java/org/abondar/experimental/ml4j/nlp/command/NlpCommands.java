@@ -7,4 +7,5 @@ public enum NlpCommands {
     LIC,
     UIC,
     W2VC,
+    IMDB,
 }

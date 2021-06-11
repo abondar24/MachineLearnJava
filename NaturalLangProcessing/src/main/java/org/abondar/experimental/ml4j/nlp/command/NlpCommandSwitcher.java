@@ -7,6 +7,7 @@ import org.abondar.experimental.ml4j.nlp.command.iterator.FileIteratorCommand;
 import org.abondar.experimental.ml4j.nlp.command.iterator.LineIteratorCommand;
 import org.abondar.experimental.ml4j.nlp.command.iterator.UimaIteratorCommand;
 import org.abondar.experimental.ml4j.nlp.command.word2vec.Word2VecCommand;
+import org.abondar.experimental.ml4j.nlp.command.word2vec.ImdbCommand;
 import org.bytedeco.javacpp.tools.Slf4jLogger;
 
 public class NlpCommandSwitcher extends CommandSwitcher {
@@ -45,6 +46,11 @@ public class NlpCommandSwitcher extends CommandSwitcher {
                 case W2VC:
                     var w2vc = new Word2VecCommand();
                     executor.executeCommand(w2vc);
+                    break;
+
+                case IMDB:
+                    var imdb = new ImdbCommand();
+                    executor.executeCommand(imdb);
                     break;
 
             }
