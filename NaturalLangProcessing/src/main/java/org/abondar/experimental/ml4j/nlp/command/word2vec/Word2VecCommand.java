@@ -4,7 +4,7 @@ import org.abondar.experimental.ml4j.command.Command;
 import org.abondar.experimental.ml4j.nlp.preprocessor.SentenceDataPreProcessor;
 
 
-import org.bytedeco.javacpp.tools.Slf4jLogger;
+
 import org.deeplearning4j.models.embeddings.inmemory.InMemoryLookupTable;
 import org.deeplearning4j.models.embeddings.loader.WordVectorSerializer;
 import org.deeplearning4j.models.word2vec.Word2Vec;
@@ -15,8 +15,12 @@ import org.deeplearning4j.text.sentenceiterator.SentenceIterator;
 import org.deeplearning4j.text.tokenization.tokenizer.preprocessor.EndingPreProcessor;
 import org.deeplearning4j.text.tokenization.tokenizerfactory.DefaultTokenizerFactory;
 import org.deeplearning4j.text.tokenization.tokenizerfactory.TokenizerFactory;
-import org.nd4j.common.primitives.Pair;
+
+//for new apis
+//import org.nd4j.common.primitives.Pair;
+
 import org.nd4j.linalg.api.ndarray.INDArray;
+import org.nd4j.linalg.primitives.Pair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

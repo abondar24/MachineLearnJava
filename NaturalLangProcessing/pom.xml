@@ -31,7 +31,7 @@
         <dependency>
             <groupId>org.deeplearning4j</groupId>
             <artifactId>deeplearning4j-nlp-uima</artifactId>
-            <version>1.0.0-beta7</version>
+            <version>${dl4j.version}</version>
         </dependency>
     </dependencies>
 
