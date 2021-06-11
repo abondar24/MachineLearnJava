@@ -1,10 +1,9 @@
 package org.abondar.experimental.ml4j.nlp.command.iterator;
 
 import org.abondar.experimental.ml4j.command.Command;
-import org.deeplearning4j.text.sentenceiterator.UimaSentenceIterator;
 
-// for new api
-//import org.deeplearning4j.nlp.uima.sentenceiterator.UimaSentenceIterator;
+
+import org.deeplearning4j.nlp.uima.sentenceiterator.UimaSentenceIterator;
 
 public class UimaIteratorCommand extends IteratorCommand implements Command {
     @Override

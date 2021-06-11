@@ -17,10 +17,10 @@
     </modules>
 
     <properties>
-        <dl4j.version>1.0.0-beta3</dl4j.version>
-        <nd4j.version>1.0.0-beta3</nd4j.version>
-        <datavec.version>1.0.0-beta3</datavec.version>
-        <datavec.codek.version>1.0.0-beta3</datavec.codek.version>
+        <dl4j.version>1.0.0-beta7</dl4j.version>
+        <nd4j.version>1.0.0-beta7</nd4j.version>
+        <datavec.version>1.0.0-beta7</datavec.version>
+        <datavec.codek.version>1.0.0-beta7</datavec.codek.version>
         <javacv.version>1.5.5</javacv.version>
         <maven.compiler.plugin>3.8.1</maven.compiler.plugin>
         <maven.dependency.plugin>3.1.2</maven.dependency.plugin>
@@ -37,7 +37,7 @@
         </dependency>
         <dependency>
             <groupId>org.deeplearning4j</groupId>
-            <artifactId>deeplearning4j-ui_2.11</artifactId>
+            <artifactId>deeplearning4j-ui</artifactId>
             <version>${dl4j.version}</version>
         </dependency>
         <dependency>
