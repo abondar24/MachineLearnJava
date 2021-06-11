@@ -9,13 +9,14 @@ import org.deeplearning4j.datasets.datavec.RecordReaderDataSetIterator;
 import org.deeplearning4j.util.ModelSerializer;
 import org.nd4j.linalg.api.ndarray.INDArray;
 import org.nd4j.linalg.dataset.api.preprocessor.ImagePreProcessingScaler;
-import org.nd4j.linalg.dataset.api.preprocessor.NormalizerStandardize;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.IOException;
 
 public class ConvolutionalNetworkChecker {
-    private static final Slf4jLogger LOGGER = new Slf4jLogger(ConvolutionalNetworkChecker.class);
+    private static final Logger logger = LoggerFactory.getLogger(ConvolutionalNetworkChecker.class);
 
     private INDArray generateOutput(String testFilePath, String modelFilePath) throws IOException, InterruptedException {
         var modelFile = new File(modelFilePath);
@@ -50,6 +51,6 @@ public class ConvolutionalNetworkChecker {
     public void checkNetwork() throws InterruptedException, IOException {
 
          var res = generateOutput("data/dataset/Beagle/beagle_7.jpg","cnn.zip");
-         LOGGER.info(res.toString());
+         logger.info(res.toString());
     }
 }

@@ -37,6 +37,8 @@ import org.nd4j.linalg.learning.config.Nesterovs;
 import org.nd4j.linalg.lossfunctions.LossFunctions;
 import org.nd4j.linalg.schedule.ScheduleType;
 import org.nd4j.linalg.schedule.StepSchedule;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.IOException;
@@ -46,7 +48,7 @@ import java.util.Random;
 
 public class ConvolutionalNetwork {
 
-    private final Slf4jLogger logger = new Slf4jLogger(ConvolutionalNetwork.class);
+    private static final Logger logger = LoggerFactory.getLogger(ConvolutionalNetwork.class);
 
     private final int numChannels = 3;
     private final int batchSize = 10;

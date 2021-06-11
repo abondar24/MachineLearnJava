@@ -28,6 +28,8 @@ import org.nd4j.linalg.dataset.api.preprocessor.NormalizerStandardize;
 import org.nd4j.linalg.factory.Nd4j;
 import org.nd4j.linalg.learning.config.Adam;
 import org.nd4j.linalg.lossfunctions.impl.LossMCXENT;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.IOException;
@@ -50,7 +52,7 @@ import static org.abondar.experimental.ml4j.deepnet.columns.Columns.Tenure;
 
 public class DeepNetwork {
 
-    private static final Slf4jLogger LOGGER = new Slf4jLogger(DeepNetwork.class);
+    private static final  Logger logger = LoggerFactory.getLogger(DeepNetwork.class);
 
     private RecordReader initReader(String filepath) throws IOException, InterruptedException {
         var csvSkipLine = 1;
@@ -158,7 +160,7 @@ public class DeepNetwork {
         var ui = UIServer.getInstance();
         var statsStorage = new InMemoryStatsStorage();
 
-        LOGGER.info("Init training");
+        logger.info("Init training");
         var network = new MultiLayerNetwork(netConfig);
         var iterations = 100;
 
@@ -174,7 +176,7 @@ public class DeepNetwork {
 
         var labels = List.of("0","1");
         var eval = network.evaluate(dataset.getTestIterator(), labels);
-        LOGGER.info(eval.stats());
+        logger.info(eval.stats());
 
         return network;
 

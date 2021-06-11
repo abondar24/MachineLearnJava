@@ -3,7 +3,6 @@ package org.abondar.experimental.ml4j.deepnet.net;
 import org.abondar.experimental.ml4j.deepnet.columns.Columns;
 import org.abondar.experimental.ml4j.deepnet.columns.Countries;
 import org.abondar.experimental.ml4j.deepnet.columns.Genders;
-import org.bytedeco.javacpp.tools.Slf4jLogger;
 import org.datavec.api.records.reader.RecordReader;
 import org.datavec.api.records.reader.impl.csv.CSVRecordReader;
 import org.datavec.api.records.reader.impl.transform.TransformProcessRecordReader;
@@ -14,12 +13,14 @@ import org.deeplearning4j.datasets.datavec.RecordReaderDataSetIterator;
 import org.deeplearning4j.util.ModelSerializer;
 import org.nd4j.linalg.api.ndarray.INDArray;
 import org.nd4j.linalg.dataset.api.preprocessor.NormalizerStandardize;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.IOException;
 
 public class DeepNetChecker {
-    private static final Slf4jLogger LOGGER = new Slf4jLogger(DeepNetChecker.class);
+    private static final Logger logger = LoggerFactory.getLogger(DeepNetwork.class);
 
     private Schema buildSchema() {
         return new Schema.Builder()
@@ -85,7 +86,7 @@ public class DeepNetChecker {
             } else {
                 msg = String.format("Customer %d is not Happy",i+1);
             }
-            LOGGER.info(msg);
+            logger.info(msg);
         }
     }
 }
