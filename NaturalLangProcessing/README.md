@@ -11,7 +11,7 @@ Examples of nlp
 5. UIMA Iterator (uic) - UIMA iterator working with directories and segmenting the sentences.
 6. Word2Vec (w2vc) - Word2Vec training example
 7. IMDB (imdb) - Sentence classification using Word2Vec and Convolutional Neural Network.
-
+8. Paragraph Vector (pvc) - Document classification using Doc2Vec technique.
 ## Datasets
 
 1. [IMDB review data](http://ai.stanford.edu/~amaas/data/sentiment/aclImdb_v1.tar.gz)

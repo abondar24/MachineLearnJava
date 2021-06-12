@@ -5,6 +5,7 @@ public enum NlpCommands {
     CIC,
     FIC,
     LIC,
+    PVC,
     UIC,
     W2VC,
     IMDB,

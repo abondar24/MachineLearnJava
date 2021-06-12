@@ -1,6 +1,7 @@
 package org.abondar.experimental.ml4j.nlp.command;
 
 import org.abondar.experimental.ml4j.command.CommandSwitcher;
+import org.abondar.experimental.ml4j.nlp.command.doc2vec.ParagraphVectorCommand;
 import org.abondar.experimental.ml4j.nlp.command.iterator.BasicLineIteratorCommand;
 import org.abondar.experimental.ml4j.nlp.command.iterator.CollectionIteratorCommand;
 import org.abondar.experimental.ml4j.nlp.command.iterator.FileIteratorCommand;
@@ -36,6 +37,11 @@ public class NlpCommandSwitcher extends CommandSwitcher {
                 case LIC:
                     var lic = new LineIteratorCommand();
                     executor.executeCommand(lic);
+                    break;
+
+                case PVC:
+                    var pvc = new ParagraphVectorCommand();
+                    executor.executeCommand(pvc);
                     break;
 
                 case UIC:
