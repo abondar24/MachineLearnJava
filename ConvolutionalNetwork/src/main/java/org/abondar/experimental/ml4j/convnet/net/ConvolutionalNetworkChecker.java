@@ -1,8 +1,6 @@
 package org.abondar.experimental.ml4j.convnet.net;
 
-import org.bytedeco.javacpp.tools.Slf4jLogger;
 import org.datavec.api.records.reader.RecordReader;
-import org.datavec.api.records.reader.impl.csv.CSVRecordReader;
 import org.datavec.api.split.FileSplit;
 import org.datavec.image.recordreader.ImageRecordReader;
 import org.deeplearning4j.datasets.datavec.RecordReaderDataSetIterator;
@@ -40,7 +38,7 @@ public class ConvolutionalNetworkChecker {
         var width = 30;
         var channels = 3;
 
-        var reader = new ImageRecordReader(height,width,channels);
+        var reader = new ImageRecordReader(height, width, channels);
         var split = new FileSplit(file);
 
         reader.initialize(split);
@@ -50,7 +48,7 @@ public class ConvolutionalNetworkChecker {
 
     public void checkNetwork() throws InterruptedException, IOException {
 
-         var res = generateOutput("data/dataset/Beagle/beagle_7.jpg","cnn.zip");
-         logger.info(res.toString());
+        var res = generateOutput("data/dataset/Beagle/beagle_7.jpg", "cnn.zip");
+        logger.info(res.toString());
     }
 }

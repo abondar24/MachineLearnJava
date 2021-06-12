@@ -12,11 +12,12 @@ import org.abondar.experimental.ml4j.data.command.serialization.SerializationCom
 import org.abondar.experimental.ml4j.data.command.split.FileSplitCommand;
 import org.abondar.experimental.ml4j.data.command.split.NumberFileSplitCommand;
 import org.abondar.experimental.ml4j.data.command.split.TransformSplitCommand;
-import org.bytedeco.javacpp.tools.Slf4jLogger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class DataCommandSwitcher extends CommandSwitcher {
 
-    private static final Slf4jLogger logger = new Slf4jLogger(DataCommandSwitcher.class);
+    private static final Logger logger = LoggerFactory.getLogger(DataCommandSwitcher.class);
     @Override
     public void executeCommand(String cmd) {
 

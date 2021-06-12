@@ -7,6 +7,7 @@ import org.datavec.api.split.FileSplit;
 import org.nd4j.shade.jackson.core.JsonFactory;
 import org.nd4j.shade.jackson.core.JsonParser;
 import org.nd4j.shade.jackson.databind.ObjectMapper;
+import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.File;
@@ -14,9 +15,10 @@ import java.io.IOException;
 
 
 public class JacksonReaderCommand implements Command {
+    private static final Logger logger = LoggerFactory.getLogger(JacksonReaderCommand.class);
+
     @Override
     public void execute() {
-        var logger = LoggerFactory.getLogger(JacksonReaderCommand.class);
 
         var fields = new FieldSelection.Builder()
                 .addField("delta")

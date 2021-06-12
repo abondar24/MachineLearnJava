@@ -2,11 +2,14 @@ package org.abondar.experimental.ml4j.convnet;
 
 import org.abondar.experimental.ml4j.command.CommandSwitcher;
 import org.abondar.experimental.ml4j.convnet.command.NetCommandSwitcher;
-import org.bytedeco.javacpp.tools.Slf4jLogger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class Main {
+
+    private static final Logger logger = LoggerFactory.getLogger(Main.class);
+
     public static void main(String[] args) {
-        var logger = new Slf4jLogger(Main.class);
         CommandSwitcher dcs = new NetCommandSwitcher();
         if (args.length == 0) {
             logger.error("Missing argument. Please check documentation for available arguments");

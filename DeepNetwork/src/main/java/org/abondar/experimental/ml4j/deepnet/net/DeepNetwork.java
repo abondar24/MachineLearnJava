@@ -1,8 +1,7 @@
 package org.abondar.experimental.ml4j.deepnet.net;
 
-import org.abondar.experimental.ml4j.deepnet.columns.Genders;
 import org.abondar.experimental.ml4j.deepnet.columns.Countries;
-import org.bytedeco.javacpp.tools.Slf4jLogger;
+import org.abondar.experimental.ml4j.deepnet.columns.Genders;
 import org.datavec.api.records.reader.RecordReader;
 import org.datavec.api.records.reader.impl.csv.CSVRecordReader;
 import org.datavec.api.records.reader.impl.transform.TransformProcessRecordReader;
@@ -52,7 +51,7 @@ import static org.abondar.experimental.ml4j.deepnet.columns.Columns.Tenure;
 
 public class DeepNetwork {
 
-    private static final  Logger logger = LoggerFactory.getLogger(DeepNetwork.class);
+    private static final Logger logger = LoggerFactory.getLogger(DeepNetwork.class);
 
     private RecordReader initReader(String filepath) throws IOException, InterruptedException {
         var csvSkipLine = 1;
@@ -105,7 +104,7 @@ public class DeepNetwork {
                 .build();
     }
 
-    private NormalizerStandardize initNormalizer(DataSetIterator dataSetIterator){
+    private NormalizerStandardize initNormalizer(DataSetIterator dataSetIterator) {
         var normalizer = new NormalizerStandardize();
         normalizer.fit(dataSetIterator);
         dataSetIterator.setPreProcessor(normalizer);
@@ -113,7 +112,7 @@ public class DeepNetwork {
         return normalizer;
     }
 
-    private  DataSetIteratorSplitter splitToBatches(DataSetIterator dataSetIterator){
+    private DataSetIteratorSplitter splitToBatches(DataSetIterator dataSetIterator) {
         var totalBatches = 1250;
         var ratio = 0.8;
         return new DataSetIteratorSplitter(dataSetIterator, totalBatches, ratio);
@@ -172,9 +171,9 @@ public class DeepNetwork {
 
         //train set
         var epochs = 100;
-        network.fit(dataset.getTrainIterator(),epochs);
+        network.fit(dataset.getTrainIterator(), epochs);
 
-        var labels = List.of("0","1");
+        var labels = List.of("0", "1");
         var eval = network.evaluate(dataset.getTestIterator(), labels);
         logger.info(eval.stats());
 
@@ -182,10 +181,10 @@ public class DeepNetwork {
 
     }
 
-    private void writeModel (MultiLayerNetwork network,NormalizerStandardize normalizer) throws IOException{
+    private void writeModel(MultiLayerNetwork network, NormalizerStandardize normalizer) throws IOException {
         var file = new File("model.zip");
-        ModelSerializer.writeModel(network,file,true);
-        ModelSerializer.addNormalizerToModel(file,normalizer);
+        ModelSerializer.writeModel(network, file, true);
+        ModelSerializer.addNormalizerToModel(file, normalizer);
     }
 
     public void buildModel(String filePath) throws IOException, InterruptedException {
@@ -199,8 +198,8 @@ public class DeepNetwork {
 
         var netConfig = buildNetConfig();
 
-        var net = initTraining(splitDataset,netConfig);
-        writeModel(net,normalizer);
+        var net = initTraining(splitDataset, netConfig);
+        writeModel(net, normalizer);
     }
 
 

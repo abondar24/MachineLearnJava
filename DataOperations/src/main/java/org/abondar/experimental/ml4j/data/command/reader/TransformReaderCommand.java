@@ -6,6 +6,7 @@ import org.datavec.api.records.reader.impl.transform.TransformProcessRecordReade
 import org.datavec.api.split.FileSplit;
 import org.datavec.api.transform.TransformProcess;
 import org.datavec.api.transform.schema.Schema;
+import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.File;
@@ -13,9 +14,12 @@ import java.io.IOException;
 import java.util.List;
 
 public class TransformReaderCommand implements Command {
+
+    private static final Logger logger = LoggerFactory.getLogger(TransformReaderCommand.class);
+
     @Override
     public void execute() {
-        var logger = LoggerFactory.getLogger(TransformReaderCommand.class);
+
         var skipRows= 1;
         var delim = ',';
 

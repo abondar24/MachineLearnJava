@@ -4,16 +4,18 @@ import org.abondar.experimental.ml4j.command.Command;
 import org.datavec.api.io.labels.ParentPathLabelGenerator;
 import org.datavec.api.split.FileSplit;
 import org.datavec.image.recordreader.ImageRecordReader;
+import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.IOException;
 
 public class ImageReaderCommand implements Command {
+
+    private static final Logger logger = LoggerFactory.getLogger(ImageReaderCommand.class);
+
     @Override
     public void execute() {
-        var logger = LoggerFactory.getLogger(ImageReaderCommand.class);
-
         var imgHeight = 100;
         var imgWidth = 100;
         var channels = 3;

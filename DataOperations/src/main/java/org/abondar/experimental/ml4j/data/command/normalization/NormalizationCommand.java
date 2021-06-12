@@ -1,8 +1,6 @@
 package org.abondar.experimental.ml4j.data.command.normalization;
 
 import org.abondar.experimental.ml4j.command.Command;
-import org.abondar.experimental.ml4j.data.command.executor.ExecutorCommand;
-import org.bytedeco.javacpp.tools.Slf4jLogger;
 import org.datavec.api.records.reader.impl.csv.CSVRecordReader;
 import org.datavec.api.records.reader.impl.transform.TransformProcessRecordReader;
 import org.datavec.api.split.FileSplit;
@@ -10,6 +8,7 @@ import org.datavec.api.transform.TransformProcess;
 import org.datavec.api.transform.schema.Schema;
 import org.deeplearning4j.datasets.datavec.RecordReaderDataSetIterator;
 import org.nd4j.linalg.dataset.api.preprocessor.NormalizerStandardize;
+import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.File;
@@ -17,9 +16,11 @@ import java.io.IOException;
 import java.util.List;
 
 public class NormalizationCommand implements Command {
+
+    private static final Logger logger = LoggerFactory.getLogger(NormalizationCommand.class);
+
     @Override
     public void execute() {
-        var logger = LoggerFactory.getLogger(NormalizationCommand.class);
 
         var batchSize = 2;
         var skipRows = 1;
@@ -55,7 +56,7 @@ public class NormalizationCommand implements Command {
 
         var transformReader = new TransformProcessRecordReader(reader, transform);
         var normalization = new NormalizerStandardize();
-        var iterator = new RecordReaderDataSetIterator(transformReader,batchSize);
+        var iterator = new RecordReaderDataSetIterator(transformReader, batchSize);
 
         logger.info("Before normalization");
         logger.info(iterator.next().getFeatures().toString());

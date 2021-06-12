@@ -1,7 +1,6 @@
 package org.abondar.experimental.ml4j.convnet.net;
 
 import org.apache.ant.compress.taskdefs.Unzip;
-import org.bytedeco.javacpp.tools.Slf4jLogger;
 import org.datavec.api.io.filters.BalancedPathFilter;
 import org.datavec.api.io.labels.ParentPathLabelGenerator;
 import org.datavec.api.split.FileSplit;

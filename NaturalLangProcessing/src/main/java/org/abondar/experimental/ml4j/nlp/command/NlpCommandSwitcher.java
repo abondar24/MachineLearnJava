@@ -9,11 +9,14 @@ import org.abondar.experimental.ml4j.nlp.command.iterator.LineIteratorCommand;
 import org.abondar.experimental.ml4j.nlp.command.iterator.UimaIteratorCommand;
 import org.abondar.experimental.ml4j.nlp.command.word2vec.Word2VecCommand;
 import org.abondar.experimental.ml4j.nlp.command.word2vec.ImdbCommand;
-import org.bytedeco.javacpp.tools.Slf4jLogger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+
 
 public class NlpCommandSwitcher extends CommandSwitcher {
 
-    private static final Slf4jLogger logger = new Slf4jLogger(NlpCommandSwitcher.class);
+    private static final Logger logger = LoggerFactory.getLogger(NlpCommandSwitcher.class);
 
     @Override
     public void executeCommand(String cmd) {

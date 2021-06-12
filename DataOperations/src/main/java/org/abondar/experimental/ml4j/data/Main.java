@@ -2,13 +2,16 @@ package org.abondar.experimental.ml4j.data;
 
 import org.abondar.experimental.ml4j.command.CommandSwitcher;
 import org.abondar.experimental.ml4j.data.command.DataCommandSwitcher;
-import org.bytedeco.javacpp.tools.Slf4jLogger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class Main {
+
+    private static final Logger logger = LoggerFactory.getLogger(Main.class);
+
     public static void main(String[] args) {
-        var logger = new  Slf4jLogger(Main.class);
         CommandSwitcher dcs = new DataCommandSwitcher();
-        if (args.length==0){
+        if (args.length == 0) {
             logger.error("Missing argument. Please check documentation for available arguments");
             System.exit(0);
         }
