@@ -18,7 +18,7 @@ public class ImdbCommand implements Command {
         try {
           var model = net.buildModel();
           net.makeSentencePrediction("data/aclImdb/test/neg/0_2.txt",model);
-        } catch (IOException ex) {
+        } catch (IOException | InterruptedException ex) {
             logger.error(ex.getMessage());
             System.exit(2);
         }

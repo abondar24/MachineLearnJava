@@ -37,11 +37,12 @@ import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.Executors;
 
 import static org.abondar.experimental.ml4j.nlp.net.NetConstants.DATASET_URL;
+import static org.abondar.experimental.ml4j.nlp.net.NetConstants.IMDB_TAR_GZ_PATH;
 import static org.abondar.experimental.ml4j.nlp.net.NetConstants.MAX_SENTENCE_LEN;
 import static org.abondar.experimental.ml4j.nlp.net.NetConstants.RANGE;
-import static org.abondar.experimental.ml4j.nlp.net.NetConstants.IMDB_TAR_GZ_PATH;
 import static org.abondar.experimental.ml4j.nlp.net.NetConstants.TEST_PATH;
 import static org.abondar.experimental.ml4j.nlp.net.NetConstants.TRAIN_PATH;
 import static org.abondar.experimental.ml4j.nlp.net.NetConstants.VECTOR_GZ_PATH;
@@ -51,7 +52,7 @@ public class ImdbNet {
 
     private static final Logger logger = LoggerFactory.getLogger(ImdbNet.class);
 
-    private void downloadData(String urlPath,String gzPAth) throws IOException {
+    private void downloadData(String urlPath, String gzPAth) throws IOException {
         var url = new URL(urlPath);
         var inputStream = new BufferedInputStream(url.openStream());
         var fos = new FileOutputStream(gzPAth);
@@ -184,20 +185,44 @@ public class ImdbNet {
         return net;
     }
 
-    public ComputationGraph buildModel() throws IOException {
+    public ComputationGraph buildModel() throws IOException, InterruptedException {
         var imdbArchive = new File(IMDB_TAR_GZ_PATH);
+
+        var executor = Executors.newFixedThreadPool(2);
         if (!imdbArchive.exists()) {
-            logger.info("Downloading IMDB dataset");
-            downloadData(DATASET_URL,IMDB_TAR_GZ_PATH);
-            unzipDataset();
+            var imdbThread = new Thread(() -> {
+                try {
+                    logger.info("Downloading IMDB dataset");
+                    downloadData(DATASET_URL, IMDB_TAR_GZ_PATH);
+                    unzipDataset();
+                } catch (IOException ex) {
+                    logger.error(ex.getMessage());
+                    System.exit(2);
+                }
+
+            });
+            executor.execute(imdbThread);
         }
 
         var vectorArchive = new File(VECTOR_GZ_PATH);
-        if (!vectorArchive.exists()){
-            logger.info("Downloading Google News Vectors");
-            downloadData(VECTOR_URL,VECTOR_GZ_PATH);
+        if (!vectorArchive.exists()) {
+            var vectorThread = new Thread(() -> {
+                try {
+                    logger.info("Downloading Google News Vectors");
+                    downloadData(VECTOR_URL, VECTOR_GZ_PATH);
+                } catch (IOException ex) {
+                    logger.error(ex.getMessage());
+                    System.exit(2);
+                }
+            });
+            executor.execute(vectorThread);
         }
 
+        executor.shutdown();
+        while (!executor.isTerminated()) {
+
+        }
+        logger.info("Downloaded all required data");
 
         var vectors = loadVectors();
 
@@ -210,21 +235,21 @@ public class ImdbNet {
 
     }
 
-    public void makeSentencePrediction(String sentencePath,ComputationGraph net) throws IOException {
+    public void makeSentencePrediction(String sentencePath, ComputationGraph net) throws IOException {
         var path = Path.of(sentencePath);
         var sentence = Files.readString(path, StandardCharsets.UTF_8);
 
         var vectors = loadVectors();
         var iterator = getDatasetIterator(false, vectors);
-        var features = ((CnnSentenceDataSetIterator)iterator).loadSingleSentence(sentence);
+        var features = ((CnnSentenceDataSetIterator) iterator).loadSingleSentence(sentence);
 
         var predictions = net.outputSingle(features);
         List<String> labels = iterator.getLabels();
 
-        logger.info(String.format("Predictions for %s",sentence));
+        logger.info(String.format("Predictions for %s", sentence));
 
-        for (int i=0;i<labels.size();i++){
-            var msg = String.format("P(%s) = %f",labels.get(i),predictions.getDouble(i));
+        for (int i = 0; i < labels.size(); i++) {
+            var msg = String.format("P(%s) = %f", labels.get(i), predictions.getDouble(i));
             logger.info(msg);
         }
 
