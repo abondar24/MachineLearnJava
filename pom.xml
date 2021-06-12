@@ -15,6 +15,7 @@
         <module>ConvolutionalNetwork</module>
         <module>NaturalLangProcessing</module>
         <module>MemoryNet</module>
+        <module>Utils</module>
     </modules>
 
     <properties>
@@ -93,17 +94,7 @@
             <artifactId>javacpp</artifactId>
             <version>${javacv.version}</version>
         </dependency>
-        <dependency>
-            <groupId>org.apache.ant</groupId>
-            <artifactId>ant-compress</artifactId>
-            <version>1.2</version>
-        </dependency>
-        <dependency>
-            <groupId>org.abondar.experimental</groupId>
-            <artifactId>Command</artifactId>
-            <version>0.1-SNAPSHOT</version>
-            <scope>compile</scope>
-        </dependency>
+
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-simple</artifactId>
@@ -114,11 +105,7 @@
             <artifactId>slf4j-api</artifactId>
             <version>1.8.0-beta4</version>
         </dependency>
-        <dependency>
-            <groupId>org.codehaus.plexus</groupId>
-            <artifactId>plexus-archiver</artifactId>
-            <version>2.2</version>
-        </dependency>
+
     </dependencies>
 
     <build>

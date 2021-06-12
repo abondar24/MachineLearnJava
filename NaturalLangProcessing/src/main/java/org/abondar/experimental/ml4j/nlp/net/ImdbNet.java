@@ -1,6 +1,8 @@
 package org.abondar.experimental.ml4j.nlp.net;
 
 
+import org.abondar.experimental.ml4j.utils.FileDownloadUtil;
+import org.abondar.experimental.ml4j.utils.UnarchiveUtil;
 import org.codehaus.plexus.archiver.tar.TarGZipUnArchiver;
 import org.codehaus.plexus.logging.console.ConsoleLoggerManager;
 import org.deeplearning4j.iterator.CnnSentenceDataSetIterator;
@@ -52,33 +54,7 @@ public class ImdbNet {
 
     private static final Logger logger = LoggerFactory.getLogger(ImdbNet.class);
 
-    private void downloadData(String urlPath, String gzPAth) throws IOException {
-        var url = new URL(urlPath);
-        var inputStream = new BufferedInputStream(url.openStream());
-        var fos = new FileOutputStream(gzPAth);
 
-        byte[] dataBuffer = new byte[1024];
-        int bytesRead;
-        while ((bytesRead = inputStream.read(dataBuffer, 0, 1024)) != -1) {
-            fos.write(dataBuffer, 0, bytesRead);
-        }
-
-    }
-
-    private void unzipDataset() {
-        var dataset = new File(IMDB_TAR_GZ_PATH);
-        var unarchiver = new TarGZipUnArchiver();
-        var manager = new ConsoleLoggerManager();
-
-        manager.initialize();
-        var plexusLogger = manager.getLoggerForComponent("word2vec");
-
-        unarchiver.enableLogging(plexusLogger);
-        unarchiver.setSourceFile(dataset);
-
-        unarchiver.setDestDirectory(new File("data"));
-        unarchiver.extract();
-    }
 
     private WordVectors loadVectors() {
         logger.info("Load word vectors");
@@ -193,8 +169,8 @@ public class ImdbNet {
             var imdbThread = new Thread(() -> {
                 try {
                     logger.info("Downloading IMDB dataset");
-                    downloadData(DATASET_URL, IMDB_TAR_GZ_PATH);
-                    unzipDataset();
+                    FileDownloadUtil.downloadArchive(DATASET_URL, IMDB_TAR_GZ_PATH);
+                    UnarchiveUtil.unarchiveTar(imdbArchive);
                 } catch (IOException ex) {
                     logger.error(ex.getMessage());
                     System.exit(2);
@@ -209,7 +185,7 @@ public class ImdbNet {
             var vectorThread = new Thread(() -> {
                 try {
                     logger.info("Downloading Google News Vectors");
-                    downloadData(VECTOR_URL, VECTOR_GZ_PATH);
+                    FileDownloadUtil.downloadArchive(VECTOR_URL, VECTOR_GZ_PATH);
                 } catch (IOException ex) {
                     logger.error(ex.getMessage());
                     System.exit(2);

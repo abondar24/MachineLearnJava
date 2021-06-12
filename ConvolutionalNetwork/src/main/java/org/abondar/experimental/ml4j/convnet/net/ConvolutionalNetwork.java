@@ -1,5 +1,6 @@
 package org.abondar.experimental.ml4j.convnet.net;
 
+import org.abondar.experimental.ml4j.utils.UnarchiveUtil;
 import org.apache.ant.compress.taskdefs.Unzip;
 import org.datavec.api.io.filters.BalancedPathFilter;
 import org.datavec.api.io.labels.ParentPathLabelGenerator;
@@ -56,7 +57,7 @@ public class ConvolutionalNetwork {
         var zip = new File(filepath);
         var datasetPath = filepath.replace(".zip","");
         var dataset = new File(datasetPath);
-        unzipDataset(zip);
+        UnarchiveUtil.unarchiveZip(zip);
         var weights = List.of(80, 20);
 
         var fileSplit = new FileSplit(dataset, NativeImageLoader.ALLOWED_FORMATS, getRandom());
@@ -91,13 +92,7 @@ public class ConvolutionalNetwork {
         return new PipelineImageTransform(pipeline);
     }
 
-    private void unzipDataset(File zip) {
-        var unzip = new Unzip();
 
-        unzip.setSrc(zip);
-        unzip.setDest(new File("data"));
-        unzip.execute();
-    }
 
     private Random getRandom(int... seed) {
         var defaultSeed = 42;
