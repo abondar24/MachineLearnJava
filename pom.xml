@@ -14,7 +14,7 @@
         <module>DeepNetwork</module>
         <module>ConvolutionalNetwork</module>
         <module>NaturalLangProcessing</module>
-        <module>MemoryNet</module>
+        <module>LstmNet</module>
         <module>Utils</module>
     </modules>
 
