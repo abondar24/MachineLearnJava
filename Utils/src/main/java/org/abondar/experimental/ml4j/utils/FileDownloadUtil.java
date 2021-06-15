@@ -7,10 +7,10 @@ import java.net.URL;
 
 public class FileDownloadUtil {
 
-    public static void downloadArchive(String urlPath, String archivePAth) throws IOException {
+    public static void downloadFile(String urlPath, String filePath) throws IOException {
         var url = new URL(urlPath);
         var inputStream = new BufferedInputStream(url.openStream());
-        var fos = new FileOutputStream(archivePAth);
+        var fos = new FileOutputStream(filePath);
 
         byte[] dataBuffer = new byte[1024];
         int bytesRead;

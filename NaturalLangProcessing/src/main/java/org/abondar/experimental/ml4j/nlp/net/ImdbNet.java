@@ -3,8 +3,6 @@ package org.abondar.experimental.ml4j.nlp.net;
 
 import org.abondar.experimental.ml4j.utils.FileDownloadUtil;
 import org.abondar.experimental.ml4j.utils.UnarchiveUtil;
-import org.codehaus.plexus.archiver.tar.TarGZipUnArchiver;
-import org.codehaus.plexus.logging.console.ConsoleLoggerManager;
 import org.deeplearning4j.iterator.CnnSentenceDataSetIterator;
 import org.deeplearning4j.iterator.provider.FileLabeledSentenceProvider;
 import org.deeplearning4j.models.embeddings.loader.WordVectorSerializer;
@@ -28,11 +26,8 @@ import org.nd4j.linalg.lossfunctions.LossFunctions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.BufferedInputStream;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -169,7 +164,7 @@ public class ImdbNet {
             var imdbThread = new Thread(() -> {
                 try {
                     logger.info("Downloading IMDB dataset");
-                    FileDownloadUtil.downloadArchive(DATASET_URL, IMDB_TAR_GZ_PATH);
+                    FileDownloadUtil.downloadFile(DATASET_URL, IMDB_TAR_GZ_PATH);
                     UnarchiveUtil.unarchiveTar(imdbArchive);
                 } catch (IOException ex) {
                     logger.error(ex.getMessage());
@@ -185,7 +180,7 @@ public class ImdbNet {
             var vectorThread = new Thread(() -> {
                 try {
                     logger.info("Downloading Google News Vectors");
-                    FileDownloadUtil.downloadArchive(VECTOR_URL, VECTOR_GZ_PATH);
+                    FileDownloadUtil.downloadFile(VECTOR_URL, VECTOR_GZ_PATH);
                 } catch (IOException ex) {
                     logger.error(ex.getMessage());
                     System.exit(2);

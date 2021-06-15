@@ -23,7 +23,7 @@ import org.slf4j.LoggerFactory;
 import java.io.File;
 import java.io.IOException;
 
-public class Physionet {
+public class PhysioNet {
 
     private static final String DATASET_URL = "https://dl4jdata.blob.core.windows.net/training/physionet2012/";
 
@@ -41,7 +41,7 @@ public class Physionet {
 
     private static final int RANDOM_SEED = 1234;
 
-    private static final Logger logger = LoggerFactory.getLogger(Physionet.class);
+    private static final Logger logger = LoggerFactory.getLogger(PhysioNet.class);
 
 
     public void runComputations() {
@@ -49,7 +49,7 @@ public class Physionet {
             var archive = new File(TAR_GZ_PATH);
             if (!archive.exists()) {
                 logger.info("Downloading dataset.");
-                FileDownloadUtil.downloadArchive(DATASET_URL + TAR_GZ, TAR_GZ_PATH);
+                FileDownloadUtil.downloadFile(DATASET_URL + TAR_GZ, TAR_GZ_PATH);
             }
 
             var dataset = new File(DATASET_ROOT);
