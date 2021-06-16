@@ -25,12 +25,12 @@ mvn clean install
 java -jar nlp.jar <command>
 ```
 
-# Note
+## Notes
 
-If RAM size on the pc is 8GB use vm parameters from below
+- If RAM size on the pc is 8GB use vm parameters from below
 
 ```
 -Xmx2G -Xmx6G
 ```
 
-Command names are in ().
+- Command names are in ().
