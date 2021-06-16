@@ -22,7 +22,7 @@ Examples of nlp
 ```
 mvn clean install
 
-java -jar nlp.jar <command>
+java -jar <jar-location>/nlp.jar <command>
 ```
 
 ## Notes

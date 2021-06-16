@@ -13,7 +13,7 @@ Dataset can be downloaded [here](https://www.kaggle.com/zippyz/cats-and-dogs-bre
 ```
 mvn clean install
 
-java -jar cnn.jar <command>
+java -jar  <jar-location>/cnn.jar <command>
 ```
 
 Command names are listed above.

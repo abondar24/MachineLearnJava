@@ -16,10 +16,9 @@ Examples for LSTM networks based on time series and sequential data.
 ```
 mvn clean install
 
-java -jar lstm.jar <command>
+java -jar <jar-location>/lstm.jar <command>
 ```
 
 ## Notes
-
 
 -Command names are in ().

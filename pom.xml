@@ -16,6 +16,7 @@
         <module>NaturalLangProcessing</module>
         <module>LstmNet</module>
         <module>Utils</module>
+        <module>AnomalyDetection</module>
     </modules>
 
     <properties>

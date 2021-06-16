@@ -20,7 +20,7 @@ Examples of data operations and transformation
 ```
 mvn clean install
 
-java -jar data.jar <command>
+java -jar <jar-location>/data.jar <command>
 ```
 
 Command names are in ().

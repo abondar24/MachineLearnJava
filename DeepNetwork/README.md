@@ -13,7 +13,7 @@ Dataset can be downloaded [here](https://www.kaggle.com/barelydedicated/bank-cus
 ```
 mvn clean install
 
-java -jar dnn.jar <command>
+java -jar <jar-location>/dnn.jar <command>
 ```
 
 Command names are listed above.
