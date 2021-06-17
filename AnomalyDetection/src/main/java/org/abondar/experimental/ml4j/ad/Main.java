@@ -1,6 +1,6 @@
-package org.abondar.exerimental.ml4j.ad;
+package org.abondar.experimental.ml4j.ad;
 
-import org.abondar.exerimental.ml4j.ad.mnist.MnistNet;
+import org.abondar.experimental.ml4j.ad.mnist.MnistNet;
 
 public class Main {
 
