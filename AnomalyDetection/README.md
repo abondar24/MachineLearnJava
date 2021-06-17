@@ -7,5 +7,5 @@ Perform anomaly detection using MNIST dataset
 ```
 mvn clean install
 
-java -jar ad.jar
+java -jar <jar-location>/ad.jar
 ```

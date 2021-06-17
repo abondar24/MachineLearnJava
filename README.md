@@ -11,3 +11,4 @@ For Python Machine Learning examples refer [here](https://github.com/abondar24/M
 4. [Natural Language Processing](NaturalLangProcessing/README.md)
 5. [Long Short Term Memory Neural Networks](LstmNet/README.md)
 6. [Anomaly Detection](AnomalyDetection/README.md)
+7. [Reinforcement Leaning](ReinforcementLearning/README.md)
