@@ -17,7 +17,6 @@
         <module>LstmNet</module>
         <module>Utils</module>
         <module>AnomalyDetection</module>
-        <module>ReinforcementLearning</module>
     </modules>
 
     <properties>
