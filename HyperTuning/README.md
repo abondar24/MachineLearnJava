@@ -1,6 +1,6 @@
 # Hyper Tuning
 
-Example of hyper parameter tuning of the model.
+Example of hyper parameter tuning of the model using arbiter.
 
 ## Build And Run
 ```
